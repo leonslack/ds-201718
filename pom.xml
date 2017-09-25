@@ -1,0 +1,348 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.wattobiz.base</groupId>
+  <artifactId>base</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Backend Base project</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+	<jdk.version>1.8</jdk.version>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <profiles>
+	<profile>
+		<id>prod</id>
+		<properties>
+			<resources.path>${basedir}\src\main\resources\prod</resources.path>
+		</properties>
+		<build>
+			<resources>
+				<resource>
+					<directory>src/main/resources/prod</directory>
+				</resource>
+			</resources>
+		</build>
+	</profile>
+	<profile>
+		<id>qa</id>
+		<properties>
+			<resources.path>${basedir}\src\main\resources\qa</resources.path>
+		</properties>
+		<build>
+			<resources>
+				<resource>
+					<directory>src/main/resources/qa</directory>
+				</resource>
+			</resources>
+		</build>
+	</profile>
+	<profile>
+		<id>dev</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+		<properties>
+			<resources.path>${basedir}\src\main\resources\dev</resources.path>
+		</properties>
+		<build>
+			<resources>
+				<resource>
+					<directory>src/main/resources/dev</directory>
+				</resource>
+
+			</resources>
+		</build>
+	</profile>
+</profiles>
+
+	<repositories>
+	  <repository>
+	    <snapshots>
+	      <enabled>false</enabled>
+	    </snapshots>
+	    <id>central</id>
+	    <name>libs-release</name>
+	    <url>http://wattobizdev7584.cloudapp.net:8081/artifactory/libs-release</url>
+	  </repository>
+	  <repository>
+	    <snapshots />
+	    <id>snapshots</id>
+	    <name>libs-snapshot</name>
+	    <url>http://wattobizdev7584.cloudapp.net:8081/artifactory/libs-snapshot</url>
+	  </repository>
+	</repositories>
+	<pluginRepositories>
+	  <pluginRepository>
+	    <snapshots>
+	      <enabled>false</enabled>
+	    </snapshots>
+	    <id>central</id>
+	    <name>plugins-release</name>
+	    <url>http://wattobizdev7584.cloudapp.net:8081/artifactory/plugins-release</url>
+	  </pluginRepository>
+	  <pluginRepository>
+	    <snapshots />
+	    <id>snapshots</id>
+	    <name>plugins-snapshot</name>
+	    <url>http://wattobizdev7584.cloudapp.net:8081/artifactory/plugins-snapshot</url>
+	  </pluginRepository>
+	</pluginRepositories>
+
+  <dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>io.spring.platform</groupId>
+			<artifactId>platform-bom</artifactId>
+			<version>Athens-SR2</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+	</dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- Test -->
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.mockito</groupId>
+		<artifactId>mockito-all</artifactId>
+		<version>1.10.19</version>
+	</dependency>
+	<!-- Spring -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+	</dependency>
+	<dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-web</artifactId>
+   	</dependency>
+   	<!-- for OAuth 2.0 -->
+	<dependency>
+		<groupId>org.springframework.security.oauth</groupId>
+		<artifactId>spring-security-oauth2</artifactId>
+
+	</dependency>
+	<!-- for OAuth 1.0a -->
+	<dependency>
+		<groupId>org.springframework.security.oauth</groupId>
+		<artifactId>spring-security-oauth</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+	</dependency>
+	<!-- Email Senging -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>mail</artifactId>
+		<version>1.4.7</version>
+	</dependency>
+	<!-- DataSource (HikariCP) -->
+	<dependency>
+		<groupId>com.zaxxer</groupId>
+		<artifactId>HikariCP</artifactId>
+	</dependency>
+	<!-- Hibernate -->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-entitymanager</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-java8</artifactId>
+	</dependency>
+
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+	</dependency>
+
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-envers</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-validator</artifactId>
+	</dependency>
+	<!-- Spring Data JPA -->
+	<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-jpa</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aspects</artifactId>
+	</dependency>
+	<!-- Database drivers -->
+	<dependency>
+		<groupId>com.microsoft.sqlserver</groupId>
+		<artifactId>sqljdbc4</artifactId>
+		<version>4.0</version>
+	</dependency>
+	<!-- Logger -->
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+	</dependency>
+	<!-- Json paser -->
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math -->
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-math</artifactId>
+		<version>2.2</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpcore</artifactId>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi-ooxml</artifactId>
+	</dependency>
+	<!-- Json Docs -->
+	<dependency>
+		<groupId>org.jsondoc</groupId>
+		<artifactId>spring-boot-starter-jsondoc</artifactId>
+		<version>1.2.15</version>
+	</dependency>
+	<dependency>
+	<groupId>org.jsondoc</groupId>
+		<artifactId>jsondoc-ui-webjar</artifactId>
+		<version>1.2.15</version>
+	</dependency>
+	<!-- File Upload -->
+	<dependency>
+		<groupId>commons-fileupload</groupId>
+		<artifactId>commons-fileupload</artifactId>
+	</dependency>
+  </dependencies>
+  <build>
+    <finalName>base</finalName>
+    <plugins>
+		<!-- Eclipse project -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-eclipse-plugin</artifactId>
+			<version>2.9</version>
+			<configuration>
+				<!-- Always download and attach dependencies source code -->
+				<downloadSources>true</downloadSources>
+				<downloadJavadocs>false</downloadJavadocs>
+				<!-- Avoid type mvn eclipse:eclipse -Dwtpversion=2.0 -->
+				<wtpversion>2.0</wtpversion>
+			</configuration>
+		</plugin>
+
+		<!-- Set JDK Compiler Level -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.2</version>
+			<configuration>
+				<source>${jdk.version}</source>
+				<target>${jdk.version}</target>
+			</configuration>
+		</plugin>
+
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+			<version>2.4</version>
+			<configuration>
+				<warSourceDirectory>src/main/webapp</warSourceDirectory>
+				<warName>base</warName>
+				<failOnMissingWebXml>false</failOnMissingWebXml>
+			</configuration>
+		</plugin>
+		<!-- For Maven Tomcat Plugin -->
+		<plugin>
+			<groupId>org.apache.tomcat.maven</groupId>
+			<artifactId>tomcat7-maven-plugin</artifactId>
+			<version>2.2</version>
+			<configuration>
+				<path>/base</path>
+			</configuration>
+		</plugin>
+		<!-- Generates JsonDocs -->
+		<plugin>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-maven-plugin</artifactId>
+			<version>4.0.3</version>
+			<configuration>
+				<url>${db.url}</url>
+				<user>${db.username}</user>
+				<password>${db.password}</password>
+				<schemas>
+					<schema>ddm</schema>
+				</schemas>
+				<baselineOnMigrate>true</baselineOnMigrate>
+			</configuration>
+		</plugin>
+
+		<!-- Loads the property file to the maven variables -->
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>properties-maven-plugin</artifactId>
+			<version>1.0-alpha-2</version>
+			<executions>
+				<execution>
+					<phase>validate</phase>
+					<goals>
+						<goal>read-project-properties</goal>
+					</goals>
+					<configuration>
+						<files>
+							<file> ${resources.path}\application.properties</file>
+						</files>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
+	<resources>
+		<resource>
+			<directory>src/main/resources/reports</directory>
+		</resource>
+		<resource>
+			<directory>src/main/resources/templates</directory>
+		</resource>
+	</resources>
+  </build>
+</project>
