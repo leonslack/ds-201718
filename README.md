@@ -43,7 +43,6 @@ If you used all the tools that we recommended at this point you just have to imp
 ### Who do I talk to? ###
 
 ** Repo owner or admin**
-
-Watto Biz Watto Studio
+Christian Leon, Eduardo Lorenzo
 
 ** Other community or team contact**
